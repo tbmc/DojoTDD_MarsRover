@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DojoTDD_marsRover
 {
@@ -18,8 +19,12 @@ namespace DojoTDD_marsRover
             { 'O', new NextDirection('S', 'N') }
         };
 
+        private ISet<Tuple<int, int>> obstacles = new HashSet<Tuple<int, int>>();
+        private bool hasObstacleInTheWay;
+
         public string sendCommand(string command)
         {
+            hasObstacleInTheWay = false;
             foreach (var move in command.ToUpper())
             {
                 if (move == 'F')
@@ -37,7 +42,12 @@ namespace DojoTDD_marsRover
 
         private string toResponse()
         {
-            return $"{x}:{y}:{direction}";
+            string str = $"{x}:{y}:{direction}";
+            if (hasObstacleInTheWay)
+            {
+                str = "O:" + str;
+            }
+            return str;
         }
 
         private int getVariableInGrid(int value)
@@ -53,6 +63,7 @@ namespace DojoTDD_marsRover
 
         private void moveForward()
         {
+            var previousCoordinates = (x, y);
             switch (direction)
             {
                 case 'N':
@@ -71,6 +82,42 @@ namespace DojoTDD_marsRover
                     x = getVariableInGrid(x - 1);
                     break;
             }
+
+            if (isInObstacle())
+            {
+                hasObstacleInTheWay = true;
+                (x, y) = previousCoordinates;
+            }
+        }
+
+        private bool isInObstacle()
+        {
+            foreach (var obstacle in obstacles)
+            {
+                if (x == obstacle.Item1 && y == obstacle.Item2)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void AddObstacle(int x, int y)
+        {
+            var newObstacle = Tuple.Create(x, y);
+            obstacles.Add(newObstacle);
+        }
+
+        public bool HasObstacle(int x, int y)
+        {
+            var key = Tuple.Create(x, y);
+            return obstacles.Contains(key);
+        }
+
+        public void RemoveObstacle(int x, int y)
+        {
+            var key = Tuple.Create(x, y);
+            obstacles.Remove(key);
         }
     }
 

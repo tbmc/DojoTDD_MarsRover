@@ -73,7 +73,7 @@ namespace DojoTDD_marsRover.Test
         [TestMethod]
         public void ShouldGoBackLastWhenGoingOutsideGridSouth()
         {
-            var response = rover.sendCommand("LLF");
+            var response = rover.sendCommand("RRF");
             Assert.AreEqual("0:9:S", response);
         }
 
@@ -89,6 +89,30 @@ namespace DojoTDD_marsRover.Test
         {
             var response = rover.sendCommand("LF");
             Assert.AreEqual("9:0:O", response);
+        }
+
+        [TestMethod]
+        public void ShouldAddObstacle11()
+        {
+            Assert.AreEqual(false, rover.HasObstacle(1, 1));
+            rover.AddObstacle(1, 1);
+            Assert.AreEqual(true, rover.HasObstacle(1, 1));
+        }
+
+        [TestMethod]
+        public void ShouldRemoveObstacle11()
+        {
+            rover.AddObstacle(1, 1);
+            rover.RemoveObstacle(1, 1);
+            Assert.AreEqual(false, rover.HasObstacle(1, 1));
+        }
+
+        [TestMethod]
+        public void ShouldBeBlockedByObstacle11()
+        {
+            rover.AddObstacle(1, 1);
+            var response = rover.sendCommand("FRF");
+            Assert.AreEqual("O:0:1:E", response);
         }
     }
 }

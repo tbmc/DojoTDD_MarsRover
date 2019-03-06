@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DojoTDD_marsRover
 {
@@ -7,8 +8,11 @@ namespace DojoTDD_marsRover
         private int x = 0;
         private int y = 0;
         private char direction = 'N';
+        private bool obstacle = false;
 
         private int minGrid = 0, maxGrid = 9;
+
+        public List<(int x, int y)> obstacles = new List<(int x, int y)>();
 
         private Dictionary<char, NextDirection> nextDirections = new Dictionary<char, NextDirection>()
         {
@@ -37,7 +41,7 @@ namespace DojoTDD_marsRover
 
         private string toResponse()
         {
-            return $"{x}:{y}:{direction}";
+            return obstacle ? $"O:{x}:{y}:{direction}" : $"{x}:{y}:{direction}";
         }
 
         private int getVariableInGrid(int value)
@@ -53,6 +57,9 @@ namespace DojoTDD_marsRover
 
         private void moveForward()
         {
+            var previousX = x;
+            var previousY = y;
+
             switch (direction)
             {
                 case 'N':
@@ -70,6 +77,17 @@ namespace DojoTDD_marsRover
                 case 'O':
                     x = getVariableInGrid(x - 1);
                     break;
+            }
+
+            if (obstacles.Exists(t => t.x == x && t.y == y))
+            {
+                obstacle = true;
+                x = previousX;
+                y = previousY;
+            }
+            else
+            {
+                obstacle = false;
             }
         }
     }

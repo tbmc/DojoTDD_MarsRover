@@ -1,5 +1,5 @@
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 
 namespace DojoTDD_marsRover.Test
 {
@@ -89,6 +89,14 @@ namespace DojoTDD_marsRover.Test
         {
             var response = rover.sendCommand("LF");
             Assert.AreEqual("9:0:O", response);
+        }
+
+        [TestMethod]
+        public void ShouldStopWhenEncounterAnObstacle()
+        {
+            rover.obstacles.Add((1,1));
+            var response = rover.sendCommand("FRF");
+            Assert.AreEqual("O:0:1:E", response);
         }
     }
 }

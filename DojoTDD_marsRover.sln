@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DojoTDD_marsRover", "DojoTDD_marsRover\DojoTDD_marsRover.csproj", "{17FAA4A1-CA60-42FC-8560-2890CA4B2ABE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DojoTDD_marsRover.Test", "DojoTDD_marsRover.Test\DojoTDD_marsRover.Test.csproj", "{0502CCE4-82FE-4574-8F91-91CBA4B81B5D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{17FAA4A1-CA60-42FC-8560-2890CA4B2ABE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17FAA4A1-CA60-42FC-8560-2890CA4B2ABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17FAA4A1-CA60-42FC-8560-2890CA4B2ABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17FAA4A1-CA60-42FC-8560-2890CA4B2ABE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0502CCE4-82FE-4574-8F91-91CBA4B81B5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0502CCE4-82FE-4574-8F91-91CBA4B81B5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0502CCE4-82FE-4574-8F91-91CBA4B81B5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0502CCE4-82FE-4574-8F91-91CBA4B81B5D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B4BADD5B-503E-4F7B-AB02-1FE67CD5AA4F}
+	EndGlobalSection
+EndGlobal
